@@ -17,6 +17,7 @@ module.exports = class extends Generator {
     }
 
     writing() {
+        var done = this.async();
         this.fs.copyTpl(
             this.templatePath('pom.xml'),
             this.destinationPath(`${this.props.name}-Service/pom.xml`), {
@@ -72,7 +73,15 @@ module.exports = class extends Generator {
                 lowerName: this.props.name.toLowerCase()
             }
         );
+        done();
     }
 
+    /*install() {
+        var done = this.async();
+        this.spawnCommand('mvn',['clean', 'compile'])
+        .on('error', function(err) {
+            done(err);
+        })
+    }*/
 
 };
