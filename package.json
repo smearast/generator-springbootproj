@@ -1,0 +1,16 @@
+{
+  "name": "generator-springboot",
+  "version": "1.0.0",
+  "description": "",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Javier Rodriguez",
+  "license": "MIT",
+  "dependencies": {
+    "yeoman-generator": "^3.1.0"
+  }
+}
