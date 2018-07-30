@@ -82,5 +82,7 @@ bower_components/
 build/
 dist/
 
+#Generated Services
+*-Service/
 
 # End of https://www.gitignore.io/api/node,yeoman
