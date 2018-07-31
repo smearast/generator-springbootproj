@@ -28,7 +28,12 @@ module.exports = class extends Generator {
 
         this.fs.copy(
             this.templatePath('.gitignore'),
-            this.destinationPath(`${this.props.name}-Service/.gitignore`), {
+            this.destinationPath(`${this.props.name}-Service/.gitignore`)
+        );
+
+        this.fs.copy(
+            this.templatePath('Dockerfile-project-service'),
+            this.destinationPath(`Dockerfile-${this.props.name.toLowerCase()}-service`), {
                 titleName: this.props.name,
                 lowerName: this.props.name.toLowerCase()
             }
