@@ -9,8 +9,15 @@ module.exports = class extends Generator {
             name: 'name',
             message: 'Your project name',
             default: 'Catalogos'
+        },
+        {
+            type: 'input',
+            name: 'port',
+            message: 'Which port your service listen',
+            default: '8090'
         }]).then(((answers) => {
             this.props = answers;
+            this.log('Name:', answers.port);
             this.log('Name:', answers.name);
             done();
         }).bind(this));
@@ -18,75 +25,35 @@ module.exports = class extends Generator {
 
     writing() {
         var done = this.async();
-        this.fs.copyTpl(
-            this.templatePath('pom.xml'),
-            this.destinationPath(`${this.props.name}-Service/pom.xml`), {
-                titleName: this.props.name,
-                lowerName: this.props.name.toLowerCase()
-            }
-        );
-
         this.fs.copy(
-            this.templatePath('.gitignore'),
-            this.destinationPath(`${this.props.name}-Service/.gitignore`)
+            this.templatePath('.*'),
+            this.destinationPath(`${this.props.name}-Service/`)
         );
-
-        this.fs.copy(
-            this.templatePath('Dockerfile-project-service'),
-            this.destinationPath(`Dockerfile-${this.props.name.toLowerCase()}-service`), {
+        this.fs.copyTpl(
+            this.templatePath('**'),
+            this.destinationPath(`${this.props.name}-Service/`), {
                 titleName: this.props.name,
-                lowerName: this.props.name.toLowerCase()
+                lowerName: this.props.name.toLowerCase(),
+                port: this.props.port
             }
         );
-
         this.fs.copyTpl(
-            this.templatePath('project-web/**/*'),
-            this.destinationPath(`${this.props.name}-Service/${this.props.name.toLowerCase()}-web/`), {
+            this.templatePath('*/**/*'),
+            this.destinationPath(`${this.props.name}-Service/`), {
                 titleName: this.props.name,
-                lowerName: this.props.name.toLowerCase()
-            }
-        );
-
-        this.fs.copyTpl(
-            this.templatePath('project-services/**/*'),
-            this.destinationPath(`${this.props.name}-Service/${this.props.name.toLowerCase()}-services/`), {
-                titleName: this.props.name,
-                lowerName: this.props.name.toLowerCase()
-            }
-        );
-
-        this.fs.copyTpl(
-            this.templatePath('project-persistence/**/*'),
-            this.destinationPath(`${this.props.name}-Service/${this.props.name.toLowerCase()}-persistence/`), {
-                titleName: this.props.name,
-                lowerName: this.props.name.toLowerCase()
-            }
-        );
-
-        this.fs.copyTpl(
-            this.templatePath('project-model/**/*'),
-            this.destinationPath(`${this.props.name}-Service/${this.props.name.toLowerCase()}-model/`), {
-                titleName: this.props.name,
-                lowerName: this.props.name.toLowerCase()
-            }
-        );
-
-        this.fs.copyTpl(
-            this.templatePath('project-commons/**/*'),
-            this.destinationPath(`${this.props.name}-Service/${this.props.name.toLowerCase()}-commons/`), {
-                titleName: this.props.name,
-                lowerName: this.props.name.toLowerCase()
+                lowerName: this.props.name.toLowerCase(),
+                port: this.props.port
             }
         );
         done();
     }
 
-    /*install() {
+    install() {
         var done = this.async();
-        this.spawnCommand('mvn',['clean', 'compile'])
+        this.spawnCommand('mvn',['clean', 'compile', 'test'], {'cwd':`${this.props.name}-Service/`})
         .on('error', function(err) {
             done(err);
         })
-    }*/
+    }
 
 };
