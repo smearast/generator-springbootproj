@@ -27,11 +27,11 @@ module.exports = class extends Generator {
         var done = this.async();
         this.fs.copy(
             this.templatePath('.*'),
-            this.destinationPath(`${this.props.name}-Service/`)
+            this.destinationPath(`${this.props.name.toLowerCase()}-service/`)
         );
         this.fs.copyTpl(
             this.templatePath('**'),
-            this.destinationPath(`${this.props.name}-Service/`), {
+            this.destinationPath(`${this.props.name.toLowerCase()}-service/`), {
                 titleName: this.props.name,
                 lowerName: this.props.name.toLowerCase(),
                 port: this.props.port
@@ -39,7 +39,7 @@ module.exports = class extends Generator {
         );
         this.fs.copyTpl(
             this.templatePath('*/**/*'),
-            this.destinationPath(`${this.props.name}-Service/`), {
+            this.destinationPath(`${this.props.name.toLowerCase()}-service/`), {
                 titleName: this.props.name,
                 lowerName: this.props.name.toLowerCase(),
                 port: this.props.port

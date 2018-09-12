@@ -4,7 +4,8 @@ import mx.com.axity.commons.to.UserTO;
 import mx.com.axity.model.UserDO;
 import mx.com.axity.persistence.UserDAO;
 import mx.com.axity.services.service.I<%= titleName %>Service;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 @Service
 public class <%= titleName %>ServiceImpl implements I<%= titleName %>Service {
 
-    final static Logger log = Logger.getLogger(<%= titleName %>ServiceImpl.class);
+    static final Logger LOG = LogManager.getLogger(<%= titleName %>ServiceImpl.class);
 
     @Autowired
     UserDAO userDAO;
@@ -26,12 +27,12 @@ public class <%= titleName %>ServiceImpl implements I<%= titleName %>Service {
     @Override
     public List<UserTO> getUsers() {
 
-        log.info("Consultando usuarios");
+        LOG.info("Consultando usuarios");
         var usersDO = this.userDAO.findByLastName("Rodriguez");
 
         Type userDAOType = new TypeToken<List<UserDO>>() {}.getType();
         var usersTO = (List<UserTO>)this.modelMapper.map(usersDO, userDAOType);
-        log.info(String.format("Se retornan %d elementos", usersTO.size()));
+        LOG.info("Se retornan {} elementos", usersTO.size());
 
         return usersTO;
     }
