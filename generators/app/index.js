@@ -6,6 +6,12 @@ module.exports = class extends Generator {
         var done = this.async();
         return this.prompt([{
             type: 'input',
+            name: 'company',
+            message: 'Your company name',
+            default: 'example'
+        },
+        {
+            type: 'input',
             name: 'name',
             message: 'Your project name',
             default: 'Catalogos'
@@ -17,7 +23,8 @@ module.exports = class extends Generator {
             default: '8090'
         }]).then(((answers) => {
             this.props = answers;
-            this.log('Name:', answers.port);
+            this.log('Company:', answers.company);
+            this.log('Port:', answers.port);
             this.log('Name:', answers.name);
             done();
         }).bind(this));
@@ -34,7 +41,8 @@ module.exports = class extends Generator {
             this.destinationPath(`${this.props.name.toLowerCase()}-service/`), {
                 titleName: this.props.name,
                 lowerName: this.props.name.toLowerCase(),
-                port: this.props.port
+                port: this.props.port,
+                company: this.props.company
             }
         );
         this.fs.copyTpl(
@@ -42,7 +50,8 @@ module.exports = class extends Generator {
             this.destinationPath(`${this.props.name.toLowerCase()}-service/`), {
                 titleName: this.props.name,
                 lowerName: this.props.name.toLowerCase(),
-                port: this.props.port
+                port: this.props.port,
+                company: this.props.company
             }
         );
         done();

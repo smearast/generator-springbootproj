@@ -34,4 +34,10 @@ public class HelloController {
         var users = this.I<%= titleName %>Facade.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity test() {
+        LOG.info("Se invoca /test");
+        return new ResponseEntity<>("Prueba Ok", HttpStatus.OK);
+    }
 }
