@@ -6,6 +6,12 @@ module.exports = class extends Generator {
         var done = this.async();
         return this.prompt([{
             type: 'input',
+            name: 'jversion',
+            message: 'Java version',
+            default: '1.8'
+        },
+        {
+            type: 'input',
             name: 'company',
             message: 'Your company name',
             default: 'example'
@@ -23,6 +29,7 @@ module.exports = class extends Generator {
             default: '8090'
         }]).then(((answers) => {
             this.props = answers;
+            this.log('Java Version:', answers.jversion);
             this.log('Company:', answers.company);
             this.log('Port:', answers.port);
             this.log('Name:', answers.name);
@@ -42,7 +49,8 @@ module.exports = class extends Generator {
                 titleName: this.props.name,
                 lowerName: this.props.name.toLowerCase(),
                 port: this.props.port,
-                company: this.props.company
+                company: this.props.company,
+                jversion: this.props.jversion
             }
         );
         this.fs.copyTpl(
@@ -51,7 +59,8 @@ module.exports = class extends Generator {
                 titleName: this.props.name,
                 lowerName: this.props.name.toLowerCase(),
                 port: this.props.port,
-                company: this.props.company
+                company: this.props.company,
+                jversion: this.props.jversion
             }
         );
         done();
