@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>mx.com.<%= company %></groupId>
+            <groupId>com.<%= company %></groupId>
             <artifactId><%= lowerName %>-model</artifactId>
         </dependency>
         <dependency>
