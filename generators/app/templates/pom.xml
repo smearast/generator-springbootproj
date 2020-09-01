@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>mx.com.<%= company %></groupId>
+    <groupId>com.<%= company %></groupId>
     <artifactId><%= lowerName %></artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -19,16 +19,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <snapshot.version>1.0-SNAPSHOT</snapshot.version>
-        <log4jcore.version>2.10.0</log4jcore.version>
-        <log4japi.version>2.10.0</log4japi.version>
-        <aspectj.version>1.5.4</aspectj.version>
-        <model.mapper.version>1.0.0</model.mapper.version>
-        <h2db.version>1.4.197</h2db.version>
+        <log4jcore.version>2.13.3</log4jcore.version>
+        <log4japi.version>2.13.3</log4japi.version>
+        <aspectj.version>1.9.6</aspectj.version>
         <jaxb.version>2.1</jaxb.version>
         <java.version>10</java.version>
-        <spring.version>2.0.3.RELEASE</spring.version>
-        <springfox.swagger.version>2.9.2</springfox.swagger.version>
-        <postgressql.version>42.2.2</postgressql.version>
+        <spring.version>2.3.3.RELEASE</spring.version>
+        <springfox.swagger.version>3.0.0</springfox.swagger.version>
         <maven.compiler.source><%= jversion %></maven.compiler.source>
         <maven.compiler.target><%= jversion %></maven.compiler.target>
     </properties>
@@ -36,27 +33,27 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>mx.com.<%= company %></groupId>
+                <groupId>com.<%= company %></groupId>
                 <artifactId><%= lowerName %>-commons</artifactId>
                 <version>${snapshot.version}</version>
             </dependency>
             <dependency>
-                <groupId>mx.com.<%= company %></groupId>
+                <groupId>com.<%= company %></groupId>
                 <artifactId><%= lowerName %>-model</artifactId>
                 <version>${snapshot.version}</version>
             </dependency>
             <dependency>
-                <groupId>mx.com.<%= company %></groupId>
+                <groupId>com.<%= company %></groupId>
                 <artifactId><%= lowerName %>-persistence</artifactId>
                 <version>${snapshot.version}</version>
             </dependency>
             <dependency>
-                <groupId>mx.com.<%= company %></groupId>
+                <groupId>com.<%= company %></groupId>
                 <artifactId><%= lowerName %>-services</artifactId>
                 <version>${snapshot.version}</version>
             </dependency>
             <dependency>
-                <groupId>mx.com.<%= company %></groupId>
+                <groupId>com.<%= company %></groupId>
                 <artifactId><%= lowerName %>-web</artifactId>
                 <version>${snapshot.version}</version>
             </dependency>
@@ -70,7 +67,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Finchley.RELEASE</version>
+                <version>Hoxton.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -85,35 +82,19 @@
                 <version>${springfox.swagger.version}</version>
             </dependency>
             <dependency>
-                <groupId>aspectj</groupId>
+                <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectj.version}</version>
             </dependency>
             <dependency>
-               <groupId>org.apache.logging.log4j</groupId>
-               <artifactId>log4j-core</artifactId>
-               <version>${log4jcore.version}</version>
-           </dependency>
-           <dependency>
-               <groupId>org.apache.logging.log4j</groupId>
-               <artifactId>log4j-api</artifactId>
-               <version>${log4japi.version}</version>
-           </dependency>
-            <dependency>
-                <groupId>com.github.rozidan</groupId>
-                <artifactId>modelmapper-spring-boot-starter</artifactId>
-                <version>${model.mapper.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4jcore.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${postgressql.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2db.version}</version>
-                <scope>test</scope>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4japi.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.xml</groupId>
