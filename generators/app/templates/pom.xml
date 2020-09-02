@@ -28,6 +28,7 @@
         <springfox.swagger.version>3.0.0</springfox.swagger.version>
         <maven.compiler.source><%= jversion %></maven.compiler.source>
         <maven.compiler.target><%= jversion %></maven.compiler.target>
+        <model.mapper.version>1.0.0</model.mapper.version>
     </properties>
 
     <dependencyManagement>
@@ -102,7 +103,11 @@
                 <version>${jaxb.version}</version>
                 <scope>test</scope>
             </dependency>
-      
+            <dependency>
+                <groupId>com.github.rozidan</groupId>
+                <artifactId>modelmapper-spring-boot-starter</artifactId>
+                <version>${model.mapper.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
